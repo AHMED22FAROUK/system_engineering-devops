@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# This script displays the part of each filename after the first dash
+# This script displays all visible filenames in current directory with only the part after first dash if exists
 
-for file in *-*; do
-  echo "${file#*-}"
+for file in *; do
+  [ -f "$file" ] && [[ "$file" != .* ]] && echo "${file#*-}"
 done
