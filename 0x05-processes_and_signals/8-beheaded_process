@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+#look for pid 7
+pid=$(ps aux | grep "[7]-highlander" | awk '{print $2}')
+
+#make sure its there
+if [ -n "$pid" ]; then
+  kill -9 "$pid"
+fi

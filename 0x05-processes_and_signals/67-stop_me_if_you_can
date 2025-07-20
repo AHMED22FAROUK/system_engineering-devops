@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# Find the PID of 7-highlander
+pid=$(ps aux | grep "[7]-highlander" | awk '{print $2}')
+
+# If PID is found, send SIGTERM using gdb (بديل kill)
+if [ -n "$pid" ]; then
+  gdb -q -n -batch -ex "attach $pid" -ex "call (void) kill($pid, 15)" -ex "detach" -ex "quit" >/dev/null 2>&1
+fi
