@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
-# A Bash script that displays the list of users running processes
+# A Bash script that displays all running processes in a user-friendly, hierarchical format
 
-ps -eo user --no-headers | sort | uniq | awk 'BEGIN {print "USER"} {print}'
+ps -eo user,pid,pcpu,pmem,vsz,rss,tty,stat,start,time,cmd --forest
+
