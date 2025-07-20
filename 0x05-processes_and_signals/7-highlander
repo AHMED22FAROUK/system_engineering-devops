@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
+# A Bash script that prints a message indefinitely and handles SIGTERM gracefully
 
-# Define a handler function for SIGTERM
+# Function to run when SIGTERM is received
 trap 'echo "I am invincible!!!"' SIGTERM
 
-# Infinite loop with a 2-second delay
-while true
-do
-  echo "To infinity and beyond"
-  sleep 2
+# Infinite loop with a message and 2-second sleep
+while true; do
+    echo "To infinity and beyond"
+    sleep 2
 done
