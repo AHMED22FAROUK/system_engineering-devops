@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-# A Bash script that displays all running processes in a hierarchical and human-readable format
+# Lists all the process in the system
 
-ps -eo user,lstart,cmd --forest | awk 'BEGIN {print "USER STARTED CMD"} NR>1 {$2=$2" "$3" "$4" "$5" "$6; print $1, $2, substr($0, index($0,$7))}'
+ps -auxf
