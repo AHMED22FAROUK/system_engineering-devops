@@ -1,12 +1,8 @@
 #!/usr/bin/env bash
-# This script stops the 4-to_infinity_and_beyond process without using kill or killall
+# A Bash script that stops the 4-to_infinity_and_beyond process without using kill or killall
 
-# shellcheck disable=SC2009
-pid=$(ps aux | grep "[4]-to_infinity_and_beyond" | awk '{print $2}')
+# Find the PID of the 4-to_infinity_and_beyond script
+PID=$(pgrep -f "4-to_infinity_and_beyond")
 
-if [ -n "$pid" ]; then
-  echo "Stopping PID $pid"
-  # This will replace the process image with /bin/true which exits instantly
-  # Requires access to /proc
-  exec 3<> /proc/"$pid"/fd/0
-fi
+# Use gdb to attach to the process and send a SIGTERM
+gdb -q -n -batch -ex "attach $PID" -ex "call (int) kill($PID, 15)" -ex "detach" -ex "quit" >/dev/null 2>&1
